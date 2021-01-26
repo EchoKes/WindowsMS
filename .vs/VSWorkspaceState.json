@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\WMS"
   ],
-  "SelectedNode": "\\.gitignore",
+  "SelectedNode": "\\WMS\\WMS.sln",
   "PreviewInSolutionExplorer": false
 }
