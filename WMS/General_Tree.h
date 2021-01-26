@@ -1,12 +1,10 @@
 #pragma once
-
 typedef int Itemtype;
-
+using namespace std;
 struct GeneralNode
 {
 	Itemtype item; 
-	GeneralNode* firstChild;
-	GeneralNode* nextSibling;
+	GeneralNode* TChild[3];
 };
 
 
