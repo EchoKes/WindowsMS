@@ -5,12 +5,14 @@ using namespace std;
 class GT {
 private:
 	GeneralNode* root;
+	GeneralNode* CurrentNode;
 public:
-	GT() {}
+	GT();
 	int size;
-	//insert
-	void insert(Itemtype item);
-	void insert(GeneralNode*& root, Itemtype item);
+	int usedMemory;
+	//insert folder
+	void insertFolder(Itemtype folder);
+	void insertFolder(GeneralNode*& root, Itemtype folder,int n);
 	//Traverse the tree inorder
 	void inorder();
 	void inorder(GeneralNode* t);
@@ -22,4 +24,14 @@ public:
 	void postorder(GeneralNode* t);
 	//check if the trees is empty
 	bool isEmpty();
+	//Using recursion to get the parent node of the current node
+	GeneralNode getParentNode(Itemtype item);
+	GeneralNode getParentNode(GeneralNode* t, Itemtype item);
+	//Display Childen of node
+	void showChildrenOfCurrentNode();
+	void showChildrenOfCurrentNode(GeneralNode* t,int n);
+	//Traverse to selected node
+	void traverseToChild(Itemtype fileName);
+	void traverseToChild(GeneralNode* t,Itemtype fileName);
+
 };
