@@ -139,10 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Dictionary.h" />
     <ClInclude Include="General_Tree.h" />
     <ClInclude Include="GT.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Dictionary.cpp" />
+    <ClCompile Include="dictmain.cpp" />
     <ClCompile Include="General_Tree.cpp" />
     <ClCompile Include="WMS_Main.cpp" />
   </ItemGroup>

@@ -1,0 +1,7 @@
+﻿  General_Tree.cpp
+C:\Users\keste\Documents\GitHub\WindowsMS\WMS\General_Tree.cpp(6,1): error C2084: function 'GT::GT(void)' already has a body
+C:\Users\keste\Documents\GitHub\WindowsMS\WMS\GT.h(9): message : see previous definition of '{ctor}'
+  WMS_Main.cpp
+  dictmain.cpp
+  Generating Code...
+C:\Users\keste\Documents\GitHub\WindowsMS\WMS\WMS_Main.cpp(10): error C4716: 'displayMenu': must return a value
