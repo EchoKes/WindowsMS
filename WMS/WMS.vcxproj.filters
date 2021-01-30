@@ -21,12 +21,21 @@
     <ClInclude Include="GT.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Dictionary.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="General_Tree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="WMS_Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Dictionary.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dictmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
