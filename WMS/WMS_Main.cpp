@@ -64,6 +64,7 @@ int main()
 			}
 			else
 			{
+				cout << endl;
 				fileExplorer.traverseToChild(getItem);
 			}
 

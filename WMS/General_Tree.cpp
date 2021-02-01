@@ -23,19 +23,14 @@ void GT::insertFolder(GeneralNode*& t, Itemtype item,int n)
 	{
 		GeneralNode* newNode = new GeneralNode;
 		newNode->item = item;
-		newNode->Tfolder[0] = NULL;
-		newNode->Tfolder[1] = NULL;
-		newNode->Tfolder[2] = NULL;
 		t = newNode;
 		if (n == 1)
 		{
 			CurrentNode = root;
 		}
-		
 	}
 	else {
 		bool valid;
-		bool full;
 		if (t->item.length() > 5)
 		{
 			if (t->item.substr(t->item.length() - 4,t->item.length()) == ".txt")
@@ -52,18 +47,10 @@ void GT::insertFolder(GeneralNode*& t, Itemtype item,int n)
 		else { valid = true; }
 		if (valid)
 		{
-			for (int i = 0; i < t->size;i++)
-			{
-				if (t->Tfolder[i] == NULL) // root{size = 3, item = "gabriel", Tfolder{size="", item = 0x00000;size="", item = 0x00000;size="", item = 0x00000},Tfile}
-				{
-					full = false;
-					insertFolder(t->Tfolder[i], item,n);
-					t->usedMemory++;
-					break;
-				}
-				full = true;
-			}
-			cout << full<<endl;
+			GeneralNode* AddNode = new GeneralNode;
+			AddNode->item = item;
+			t->Tfolder.push_back(AddNode);
+			t->usedMemory++;
 		}
 		
 		
@@ -114,6 +101,7 @@ void GT::traverseToChild(GeneralNode* t,Itemtype fileName)
 		cout << "There is no such folder/file";
 	}
 }
+
 //GeneralNode GT::getParentNode(Itemtype target)
 //{
 //	return getParentNode(root, target);
