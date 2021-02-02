@@ -27,7 +27,8 @@ void GT::insertFolder(GeneralNode*& t, Itemtype item,int n)
 		if (n == 1)
 		{
 			CurrentNode = root;
-			CurrentDirectory.push(*CurrentNode);
+			CurrentDirectory.push(*CurrentNode); //root/
+			CurrentDirectory.displayInOrderOfInsertion();
 		}
 	}
 	else {
@@ -84,13 +85,17 @@ void GT::traverseToChild(Itemtype fileName)
 void GT::traverseToChild(GeneralNode* t,Itemtype fileName)
 {
 	bool isExist;
+	string directoryPath;
 	for (int i = 0;i < t->usedMemory;i++)
 	{
 		if (t->Tfolder[i]->item == fileName)
 		{
 			CurrentNode = t->Tfolder[i];
+			CurrentDirectory.push(*CurrentNode);
+			CurrentDirectory.displayInOrderOfInsertion();
 			cout << "You are currently in " + fileName<<endl;
 			isExist = true;
+			break;
 		}
 		else
 		{
@@ -102,7 +107,19 @@ void GT::traverseToChild(GeneralNode* t,Itemtype fileName)
 		cout << "There is no such folder/file";
 	}
 }
-
+void GT::traverseBackwards()
+{
+	GeneralNode* newNode = new GeneralNode;
+	CurrentDirectory.pop();
+	//CurrentDirectory.getTop();
+	//traverseBackwards(newNode);
+}
+//void GT::traverseBackwards(GeneralNode* t)
+//{
+//	CurrentNode = t;
+//	CurrentDirectory.displayInOrderOfInsertion();
+//	cout << "You are currently in " + t->item << endl;
+//}
 //GeneralNode GT::getParentNode(Itemtype target)
 //{
 //	return getParentNode(root, target);

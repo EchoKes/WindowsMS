@@ -35,5 +35,7 @@ public:
 	//Traverse to selected node
 	void traverseToChild(Itemtype fileName);
 	void traverseToChild(GeneralNode* t,Itemtype fileName);
-
+	//Traverse backwards to previous file or folder
+	void traverseBackwards();
+	void traverseBackwards(GeneralNode* t);
 };

@@ -68,11 +68,12 @@ void Stack::displayInOrder()
 	bool success = !isEmpty();
 	GeneralNode* temp = new GeneralNode;
 	temp = topNode;
+	cout << "Current Directory:"<<endl;
 	if (success)
 	{
 		for (int i = -1; i < top;i++)
 		{
-			cout << temp->ItemNode.item;
+			cout << temp->ItemNode.item +"/";
 			temp = temp->next;
 		}
 		cout << endl;

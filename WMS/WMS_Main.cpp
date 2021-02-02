@@ -63,11 +63,14 @@ int main()
 			}
 			else
 			{
-				cout << endl;
 				fileExplorer.traverseToChild(getItem);
 			}
 
 
+		}
+		if (choice == "3") //Traverse Backwards to the previous node
+		{
+			fileExplorer.traverseBackwards();
 		}
 	}
 
