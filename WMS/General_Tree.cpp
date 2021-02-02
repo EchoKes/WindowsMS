@@ -6,7 +6,7 @@ GT::GT()
 {
 	root = NULL;
 	CurrentNode = NULL;
-
+	CurrentDirectory;
 }
 void GT::insertFolder(Itemtype item)
 {
@@ -27,6 +27,7 @@ void GT::insertFolder(GeneralNode*& t, Itemtype item,int n)
 		if (n == 1)
 		{
 			CurrentNode = root;
+			CurrentDirectory.push(*CurrentNode);
 		}
 	}
 	else {

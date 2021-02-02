@@ -1,11 +1,13 @@
 #pragma once
 using namespace std;
 #include "General_Tree.h"
+#include "stackDirectory.h"
 
 class GT {
 private:
 	GeneralNode* root;
 	GeneralNode* CurrentNode;
+	Stack CurrentDirectory; 
 public:
 	GT();
 	int size;

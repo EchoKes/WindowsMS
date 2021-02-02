@@ -1,7 +1,6 @@
 using namespace std;
 #include "GT.h"
 #include<iostream>
-
 void displayMenu()
 {
 	cout << "Select an action to proceed!" << endl;

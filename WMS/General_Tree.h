@@ -1,12 +1,12 @@
 #pragma once
 #include <string>
 #include <vector>
-typedef string Itemtype;
 using namespace std;
+typedef string Itemtype;
 struct GeneralNode
 {
 	int usedMemory = 0;
-	Itemtype item; // gabriel -> folder
+	Itemtype item; // gabriel -> folder6
 	vector<GeneralNode*> Tfolder;
 };
 

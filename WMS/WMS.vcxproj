@@ -142,11 +142,13 @@
     <ClInclude Include="Dictionary.h" />
     <ClInclude Include="General_Tree.h" />
     <ClInclude Include="GT.h" />
+    <ClInclude Include="stackDirectory.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Dictionary.cpp" />
     <ClCompile Include="dictmain.cpp" />
     <ClCompile Include="General_Tree.cpp" />
+    <ClCompile Include="StackDirectory.cpp" />
     <ClCompile Include="WMS_Main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
