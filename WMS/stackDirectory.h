@@ -8,12 +8,12 @@ typedef GeneralNode stackItemType;
 class Stack
 {
 private:
-	struct GeneralNode
+	struct Node
 	{
 		stackItemType ItemNode;   // to store data
-		GeneralNode* next;  // to point to next node
+		Node* next;  // to point to next node
 	};
-	GeneralNode* topNode;
+	Node* topNode;
 	int top;
 
 public:
@@ -22,7 +22,7 @@ public:
 	bool push(stackItemType ItemNode);
 	bool pop();
 	bool pop(stackItemType& ItemNode);
-	void getTop(stackItemType& ItemNode);
+	void getTop(GeneralNode& t);
 	bool isEmpty();
 	void displayInOrder();
 	void displayInOrderOfInsertion();

@@ -1,6 +1,6 @@
 #include "stackDirectory.h"
 using namespace std;
-Stack::Stack() { GeneralNode* topNode = NULL; top = -1; }
+Stack::Stack() { Node* topNode = NULL; top = -1; }
 Stack::~Stack() {}
 
 bool Stack::push(stackItemType item)
@@ -8,14 +8,14 @@ bool Stack::push(stackItemType item)
 	bool success = !isEmpty();
 	if (!success)
 	{
-		GeneralNode* newNode = new GeneralNode;
+		Node* newNode = new Node;
 		newNode->ItemNode = item;
 		newNode->next = NULL;
 		topNode = newNode;
 	}
 	else
 	{
-		GeneralNode* newNode = new GeneralNode;
+		Node* newNode = new Node;
 		newNode->ItemNode = item;
 		newNode->next = NULL;
 		newNode->next = topNode;
@@ -30,7 +30,7 @@ bool Stack::pop()
 	bool success = !isEmpty();
 	if (success)
 	{
-		GeneralNode* tempNode = new GeneralNode;
+		Node* tempNode = new Node;
 		tempNode = topNode;
 		topNode = topNode->next;
 		tempNode->next = NULL;
@@ -44,7 +44,7 @@ bool Stack::pop(stackItemType& ItemNode)
 	bool success = !isEmpty();
 	if (success)
 	{
-		GeneralNode* tempNode = new GeneralNode;
+		Node* tempNode = new Node;
 		tempNode = topNode;
 		topNode = topNode->next;
 		tempNode->next = NULL;
@@ -53,20 +53,22 @@ bool Stack::pop(stackItemType& ItemNode)
 		return true;
 	}
 }
-void Stack::getTop(stackItemType& ItemNode)
+void Stack::getTop(GeneralNode& t)
 {
 	bool success = !isEmpty();
 	if (success)
 	{
-		ItemNode = topNode->ItemNode;
-		cout << ItemNode.item;
+		GeneralNode* tempNode = new GeneralNode;
+		tempNode->item = topNode->ItemNode.item;
+		tempNode->Tfolder = topNode->ItemNode.Tfolder;
+		tempNode->usedMemory = topNode->ItemNode.usedMemory;
+		t = *tempNode;
 	}
-	cout << endl;
 }
 void Stack::displayInOrder()
 {
 	bool success = !isEmpty();
-	GeneralNode* temp = new GeneralNode;
+	Node* temp = new Node;
 	temp = topNode;
 	cout << "Current Directory:"<<endl;
 	if (success)
@@ -85,7 +87,7 @@ void Stack::displayInOrderOfInsertion()
 	bool success = !isEmpty();
 	Stack back_stack;
 	stackItemType getType;
-	GeneralNode* temp = new GeneralNode;
+	Node* temp = new Node;
 	temp = topNode;
 	if (success)
 	{
