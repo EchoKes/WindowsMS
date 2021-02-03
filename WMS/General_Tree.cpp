@@ -18,7 +18,8 @@ void GT::insertFolder(Itemtype item)
 	
 }
 void GT::insertFolder(GeneralNode*& t, Itemtype item,int n)
-{	
+{
+	string direc;
 	if (t == NULL)
 	{
 		GeneralNode* newNode = new GeneralNode;
@@ -27,9 +28,11 @@ void GT::insertFolder(GeneralNode*& t, Itemtype item,int n)
 		if (n == 1)
 		{
 			CurrentNode = root;
-			CurrentDirectory.displayInOrderOfInsertion();
 		}
 		CurrentDirectory.push(*CurrentNode); //root/
+		CurrentDirectory.displayInOrderOfInsertion(direc);
+		// Kester Add here item = nameoffile, direc = path
+		//add here.
 	}
 	else {
 		bool valid;
@@ -53,13 +56,15 @@ void GT::insertFolder(GeneralNode*& t, Itemtype item,int n)
 			GeneralNode* updatedNode = new GeneralNode;
 			AddNode->item = item;
 			t->Tfolder.push_back(AddNode);
+			CurrentDirectory.displayInOrderOfInsertion(direc);
+			direc +=item+"/";
+			// Kester Add here item = nameoffile, direc = path
+			//add here.
 			t->usedMemory++;
-			if (root == CurrentNode)
-			{
-				CurrentDirectory.pop();
-				CurrentDirectory.push(*CurrentNode);
-				CurrentDirectory.getTop(*updatedNode);
-			}
+			CurrentDirectory.pop();
+			CurrentDirectory.push(*CurrentNode);
+			CurrentDirectory.getTop(*updatedNode);
+			
 		}
 		
 		
@@ -91,6 +96,7 @@ void GT::traverseToChild(Itemtype fileName)
 }
 void GT::traverseToChild(GeneralNode* t,Itemtype fileName)
 {
+	string direc;
 	bool isExist;
 	string directoryPath;
 	for (int i = 0;i < t->usedMemory;i++)
@@ -99,7 +105,8 @@ void GT::traverseToChild(GeneralNode* t,Itemtype fileName)
 		{
 			CurrentNode = t->Tfolder[i];
 			CurrentDirectory.push(*CurrentNode);
-			CurrentDirectory.displayInOrderOfInsertion();
+			CurrentDirectory.displayInOrderOfInsertion(direc);
+			cout << "This is direc " << direc << endl;
 			cout << "You are currently in " + fileName<<endl;
 			isExist = true;
 			break;
@@ -123,10 +130,12 @@ void GT::traverseBackwards()
 }
 void GT::traverseBackwards(GeneralNode* t)
 {
+	string direc;
 	if (root->item != CurrentNode->item)
 	{
 		CurrentNode = t;
-		CurrentDirectory.displayInOrderOfInsertion();
+		CurrentDirectory.displayInOrderOfInsertion(direc);
+		cout << "This is direc " << direc << endl;
 		cout << "You are currently in " + t->item << endl;
 	}
 	else

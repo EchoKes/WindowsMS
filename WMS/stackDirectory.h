@@ -24,6 +24,6 @@ public:
 	bool pop(stackItemType& ItemNode);
 	void getTop(GeneralNode& t);
 	bool isEmpty();
-	void displayInOrder();
-	void displayInOrderOfInsertion();
+	void displayInOrder(string& direcPath);
+	void displayInOrderOfInsertion(string& direcPath);
 };

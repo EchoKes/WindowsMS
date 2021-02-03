@@ -51,7 +51,7 @@ bool Stack::pop(stackItemType& ItemNode)
 		delete tempNode;
 		top--;
 		return true;
-	}
+	} 
 }
 void Stack::getTop(GeneralNode& t)
 {
@@ -65,7 +65,7 @@ void Stack::getTop(GeneralNode& t)
 		t = *tempNode;
 	}
 }
-void Stack::displayInOrder()
+void Stack::displayInOrder(string& direcPath)
 {
 	bool success = !isEmpty();
 	Node* temp = new Node;
@@ -76,13 +76,14 @@ void Stack::displayInOrder()
 		for (int i = -1; i < top;i++)
 		{
 			cout << temp->ItemNode.item +"/";
+			direcPath += temp->ItemNode.item + "/";
 			temp = temp->next;
 		}
 		cout << endl;
 	}
 
 }
-void Stack::displayInOrderOfInsertion()
+void Stack::displayInOrderOfInsertion(string& direcPath)
 {
 	bool success = !isEmpty();
 	Stack back_stack;
@@ -96,7 +97,8 @@ void Stack::displayInOrderOfInsertion()
 			back_stack.push(temp->ItemNode);
 			temp = temp->next;
 		}
-		back_stack.displayInOrder();
+		cout << direcPath;
+		back_stack.displayInOrder(direcPath);
 		cout << endl;
 	}
 }
