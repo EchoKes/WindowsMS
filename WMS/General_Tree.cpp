@@ -1,6 +1,9 @@
 #include "GT.h"
+#include "Dictionary.h"
 #include <iostream>
 using namespace std;
+
+static Dictionary d;
 
 GT::GT()
 {
@@ -33,6 +36,7 @@ void GT::insertFolder(GeneralNode*& t, Itemtype item,int n)
 		CurrentDirectory.displayInOrderOfInsertion(direc);
 		// Kester Add here item = nameoffile, direc = path
 		//add here.
+		d.add(item, direc);
 	}
 	else {
 		bool valid;
@@ -60,6 +64,7 @@ void GT::insertFolder(GeneralNode*& t, Itemtype item,int n)
 			direc +=item+"/";
 			// Kester Add here item = nameoffile, direc = path
 			//add here.
+			d.add(item, direc);
 			t->usedMemory++;
 			CurrentDirectory.pop();
 			CurrentDirectory.push(*CurrentNode);

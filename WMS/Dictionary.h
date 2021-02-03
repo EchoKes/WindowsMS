@@ -1,8 +1,10 @@
 #pragma once
 #include <string>
+#include <vector>
 using namespace std;
 
-const int MAX_SIZE = 17;
+//const int MAX_SIZE = 17;
+static int MAX_SIZE = 17;
 typedef string KeyType;
 typedef string ItemType;
 
@@ -16,7 +18,8 @@ private:
 		Node* next;	// pointer pointing to next item with same search key
 	};
 
-	Node* items[MAX_SIZE];
+	vector<Node*>items;
+	//Node* items[MAX_SIZE];
 	int  size;			// number of items in the Dictionary
 
 public:
