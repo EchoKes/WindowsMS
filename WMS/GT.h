@@ -2,12 +2,14 @@
 using namespace std;
 #include "General_Tree.h"
 #include "stackDirectory.h"
+#include "Dictionary.h"
 
 class GT {
 private:
 	GeneralNode* root;
 	GeneralNode* CurrentNode;
 	Stack CurrentDirectory; 
+	
 public:
 	GT();
 	int size;
@@ -15,20 +17,8 @@ public:
 	//insert folder
 	void insertFolder(Itemtype folder);
 	void insertFolder(GeneralNode*& root, Itemtype folder,int n);
-	//Traverse the tree inorder
-	void inorder();
-	void inorder(GeneralNode* t);
-	//Traverse the tree inorder
-	void preorder();
-	void preorder(GeneralNode* t);
-	//Traverse the tree inorder
-	void postorder();
-	void postorder(GeneralNode* t);
 	//check if the trees is empty
 	bool isEmpty();
-	//Using recursion to get the parent node of the current node
-	GeneralNode getParentNode(Itemtype item);
-	GeneralNode getParentNode(GeneralNode* t, Itemtype item);
 	//Display Childen of node
 	void showChildrenOfCurrentNode();
 	void showChildrenOfCurrentNode(GeneralNode* t,int n);
@@ -42,4 +32,6 @@ public:
 	void deleteCurrent();
 	void deleteCurrent(GeneralNode* t);
 	//updating current item 
+	void updateCurrent(ItemType item);
+	void updateCurrent(GeneralNode* t,ItemType item);
 };

@@ -38,9 +38,6 @@
     <ClCompile Include="Dictionary.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="dictmain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="StackDirectory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

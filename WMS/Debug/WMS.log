@@ -1,2 +1,5 @@
 ﻿  General_Tree.cpp
-  WMS.vcxproj -> D:\Year 2 Sem 2\DSA\Assignment\Assignment_Practical\WMS\Debug\WMS.exe
+  WMS_Main.cpp
+  Generating Code...
+General_Tree.obj : error LNK2001: unresolved external symbol "private: static class Dictionary GT::d" (?d@GT@@0VDictionary@@A)
+D:\Year 2 Sem 2\DSA\Assignment\Assignment_Practical\WMS\Debug\WMS.exe : fatal error LNK1120: 1 unresolved externals

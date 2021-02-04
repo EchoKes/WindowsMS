@@ -2,9 +2,7 @@
 #include "Dictionary.h"
 #include <iostream>
 using namespace std;
-
 static Dictionary d;
-
 GT::GT()
 {
 	root = NULL;
@@ -37,6 +35,8 @@ void GT::insertFolder(GeneralNode*& t, Itemtype item,int n)
 		// Kester Add here item = nameoffile, direc = path
 		//add here.
 		d.add(item, direc);
+		newNode=NULL;
+		delete newNode;
 	}
 	else {
 		bool valid;
@@ -57,7 +57,6 @@ void GT::insertFolder(GeneralNode*& t, Itemtype item,int n)
 		if (valid)
 		{
 			GeneralNode* AddNode = new GeneralNode;
-			GeneralNode* updatedNode = new GeneralNode;
 			AddNode->item = item;
 			t->Tfolder.push_back(AddNode);
 			CurrentDirectory.displayInOrderOfInsertion(direc);
@@ -66,13 +65,12 @@ void GT::insertFolder(GeneralNode*& t, Itemtype item,int n)
 			//add here.
 			d.add(item, direc);
 			t->usedMemory++;
+			CurrentNode = t;
 			CurrentDirectory.pop();
 			CurrentDirectory.push(*CurrentNode);
-			CurrentDirectory.getTop(*updatedNode);
-			
+			AddNode = NULL;
+			delete AddNode;
 		}
-		
-		
 	}
 }
 bool GT::isEmpty() { return (root == NULL); }
@@ -102,7 +100,7 @@ void GT::traverseToChild(Itemtype fileName)
 void GT::traverseToChild(GeneralNode* t,Itemtype fileName)
 {
 	string direc;
-	bool isExist;
+	bool isExist = true;
 	string directoryPath;
 	for (int i = 0;i < t->usedMemory;i++)
 	{
@@ -112,8 +110,8 @@ void GT::traverseToChild(GeneralNode* t,Itemtype fileName)
 			CurrentDirectory.push(*CurrentNode);
 			CurrentDirectory.displayInOrderOfInsertion(direc);
 			cout << "You are currently in " + fileName<<endl;
-			isExist = true;
 			break;
+			isExist = true;
 		}
 		else
 		{
@@ -122,62 +120,85 @@ void GT::traverseToChild(GeneralNode* t,Itemtype fileName)
 	}
 	if (isExist == false)
 	{
-		cout << "There is no such folder/file";
+		cout << "There is no such folder/file"<<endl;
 	}
 }
 void GT::traverseBackwards()
 {
 	GeneralNode* newNode = new GeneralNode;
-	CurrentDirectory.pop();
 	CurrentDirectory.getTop(*newNode);
-	traverseBackwards(newNode);
-}
-void GT::traverseBackwards(GeneralNode* t)
-{
-	string direc;
-	if (root->item != CurrentNode->item)
-	{
-		CurrentNode = t;
-		CurrentDirectory.displayInOrderOfInsertion(direc);
-		cout << "This is direc " << direc << endl;
-		cout << "You are currently in " + t->item << endl;
-	}
-	else
+	if (newNode->item == root->item)
 	{
 		cout << "There is no files/folder to go back to!" << endl;
 	}
+	else
+	{ 
+		CurrentDirectory.pop();
+		CurrentDirectory.getTop(*newNode);
+		traverseBackwards(newNode);
+	}
+	
 	
 }
+void GT::traverseBackwards(GeneralNode* t)
+{
+	CurrentNode = t;
+	cout << "You are currently in " + t->item << endl;
+}
+void GT::deleteCurrent()
+{
+	deleteCurrent(CurrentNode); //gabriel/kester
+	
+}
+void GT::deleteCurrent(GeneralNode* t)
+{
+	string direc;
+	int temp;
+	if (root->item == t->item)
+	{
+		cout << "Not allowed to delete root"<<endl;
+	}
+	else
+	{
+		if (t->Tfolder.size() != 0)
+		{
+			cout << t->Tfolder[0]->item;
+			cout << "Action not allowed, there are " << t->Tfolder.size() << " in the object.";
+		}
+		else
+		{
+			GeneralNode* tempNode = new GeneralNode;
+			tempNode = t;//kester
+			traverseBackwards();//gabriel/
+			temp = CurrentNode->usedMemory--;
+			for (int i = 0; i < temp;i++)
+			{
+				if (CurrentNode->Tfolder[i]->item == tempNode->item)
+				{
+					CurrentNode->Tfolder.erase(CurrentNode->Tfolder.begin() + i);
+				}
+			}
+			CurrentDirectory.displayInOrderOfInsertion(direc);
+			//Kester add here to delete the path and value in dic
+			CurrentDirectory.pop();
+			CurrentDirectory.push(*CurrentNode);
+			tempNode = NULL;
+			delete tempNode;
+		}
+	}
 
-//GeneralNode GT::getParentNode(Itemtype target)
-//{
-//	return getParentNode(root, target);
-//}
-//GeneralNode GT::getParentNode(GeneralNode* t,Itemtype target)
-//{
-//	//base case
-//	if (t->Tfile->item || t->Tfolder[0]->item == target)
-//	{
-//		return t;
-//	}
-//	//recursion
-//	else
-//	{
-//
-//	}
-//}
-//void GT::inorder() 
-//{
-//	if (isEmpty())
-//		cout << "No item found" << endl;
-//	else
-//		inorder(root);
-//}
-//void GT::inorder(GeneralNode* t)
-//{
-//	if (t != NULL)
-//	{
-//		inorder(t->Tfolder[0]); //recursive to change previous node to this node
-//		cout << t->item << endl;
-//	}
-//}
+}
+void GT::updateCurrent(ItemType item)
+{
+	updateCurrent(CurrentNode,item);
+}
+void GT::updateCurrent(GeneralNode* t,ItemType item)
+{
+	string direc;
+	t->item = item;
+	CurrentDirectory.pop();
+	CurrentDirectory.push(*t);
+	CurrentNode = t;
+	CurrentDirectory.displayInOrderOfInsertion(direc);
+	//Kester add here the new key is item and the path is direc
+}

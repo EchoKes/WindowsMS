@@ -8,6 +8,8 @@ void displayMenu()
 	cout << "[2] Select Folder" << endl;
 	cout << "[3] Back to Previous Folder" << endl;
 	cout << "[4] Delete Current" << endl;
+	cout << "[5] Rename Current" << endl;
+	
 	
 }
 void displayOption1Menu()
@@ -15,11 +17,6 @@ void displayOption1Menu()
 	cout << "[1] New Folder" << endl;
 	cout << "[2] New Text File" << endl;
 }
-//void showDirectory(string &directory,string item)
-//{
-//	*&directory += "/" + item;
-//	cout << "Current Directory is: " + directory << endl;
-//}
 int main()
 {
 	GT fileExplorer;
@@ -73,6 +70,18 @@ int main()
 		if (choice == "3") //Traverse Backwards to the previous node
 		{
 			fileExplorer.traverseBackwards();
+		}
+		if (choice == "4")
+		{
+			fileExplorer.deleteCurrent();
+		}
+		if (choice == "5")
+		{
+			string updatedName;
+			cout << "Enter updated name: ";
+			cin >> updatedName;
+			cout << endl;
+			fileExplorer.updateCurrent(updatedName);
 		}
 	}
 
