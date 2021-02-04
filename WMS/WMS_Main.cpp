@@ -7,7 +7,7 @@ void displayMenu()
 	cout << "[1] New" << endl;
 	cout << "[2] Select Folder" << endl;
 	cout << "[3] Back to Previous Folder" << endl;
-	cout << "[4] Delete Current" << endl;
+	cout << "[4] Delete Children" << endl;
 	cout << "[5] Rename Current" << endl;
 	
 	
@@ -73,7 +73,12 @@ int main()
 		}
 		if (choice == "4")
 		{
-			fileExplorer.deleteCurrent();
+			string getItem;
+			fileExplorer.showChildrenOfCurrentNode();
+			cout << "Enter children to delete: " ;
+			cin >> getItem;
+			cout << endl;
+			fileExplorer.deleteChildren(getItem);
 		}
 		if (choice == "5")
 		{

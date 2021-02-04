@@ -145,49 +145,6 @@ void GT::traverseBackwards(GeneralNode* t)
 	CurrentNode = t;
 	cout << "You are currently in " + t->item << endl;
 }
-void GT::deleteCurrent()
-{
-	deleteCurrent(CurrentNode); //gabriel/kester
-	
-}
-void GT::deleteCurrent(GeneralNode* t)
-{
-	string direc;
-	int temp;
-	if (root->item == t->item)
-	{
-		cout << "Not allowed to delete root"<<endl;
-	}
-	else
-	{
-		if (t->Tfolder.size() != 0)
-		{
-			cout << t->Tfolder[0]->item;
-			cout << "Action not allowed, there are " << t->Tfolder.size() << " in the object.";
-		}
-		else
-		{
-			GeneralNode* tempNode = new GeneralNode;
-			tempNode = t;//kester
-			traverseBackwards();//gabriel/
-			temp = CurrentNode->usedMemory--;
-			for (int i = 0; i < temp;i++)
-			{
-				if (CurrentNode->Tfolder[i]->item == tempNode->item)
-				{
-					CurrentNode->Tfolder.erase(CurrentNode->Tfolder.begin() + i);
-				}
-			}
-			CurrentDirectory.displayInOrderOfInsertion(direc);
-			//Kester add here to delete the path and value in dic
-			CurrentDirectory.pop();
-			CurrentDirectory.push(*CurrentNode);
-			tempNode = NULL;
-			delete tempNode;
-		}
-	}
-
-}
 void GT::updateCurrent(ItemType item)
 {
 	updateCurrent(CurrentNode,item);
@@ -201,4 +158,33 @@ void GT::updateCurrent(GeneralNode* t,ItemType item)
 	CurrentNode = t;
 	CurrentDirectory.displayInOrderOfInsertion(direc);
 	//Kester add here the new key is item and the path is direc
+}
+void GT::deleteChildren(ItemType childrenName)
+{
+	deleteChildren(CurrentNode,childrenName);
+}
+void GT::deleteChildren(GeneralNode* t, ItemType childrenName)
+{
+	string direc;
+	for (int i = 0;i < t->usedMemory;i++)
+	{
+		if (t->Tfolder[i]->item == childrenName)
+		{
+			if (t->Tfolder[i]->Tfolder.size() != 0)
+			{
+				cout << "Unable to delete children as it contains " << t->Tfolder[i]->Tfolder.size() << " file(s)." << endl;
+			}
+			else
+			{
+				t->Tfolder.erase(t->Tfolder.begin() + i);
+				t->usedMemory--;
+				cout << "1 item deleted."<<endl;
+				CurrentNode = t;
+				CurrentDirectory.pop();
+				CurrentDirectory.push(*CurrentNode);
+				CurrentDirectory.displayInOrderOfInsertion(direc);
+				//Kester childrenName = ur hash, direc is path.
+			}
+		}
+	}
 }

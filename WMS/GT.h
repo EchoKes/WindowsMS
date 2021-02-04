@@ -28,9 +28,9 @@ public:
 	//Traverse backwards to previous file or folder
 	void traverseBackwards();
 	void traverseBackwards(GeneralNode* t);
-	//Deleting folder 
-	void deleteCurrent();
-	void deleteCurrent(GeneralNode* t);
+	//Deleting children
+	void deleteChildren(ItemType childrenName);
+	void deleteChildren(GeneralNode* t, ItemType childrenName);
 	//updating current item 
 	void updateCurrent(ItemType item);
 	void updateCurrent(GeneralNode* t,ItemType item);
