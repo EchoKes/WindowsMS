@@ -7,6 +7,8 @@ void displayMenu()
 	cout << "[1] New" << endl;
 	cout << "[2] Select Folder" << endl;
 	cout << "[3] Back to Previous Folder" << endl;
+	cout << "[4] Delete Current" << endl;
+	
 }
 void displayOption1Menu()
 {

@@ -106,7 +106,6 @@ void GT::traverseToChild(GeneralNode* t,Itemtype fileName)
 			CurrentNode = t->Tfolder[i];
 			CurrentDirectory.push(*CurrentNode);
 			CurrentDirectory.displayInOrderOfInsertion(direc);
-			cout << "This is direc " << direc << endl;
 			cout << "You are currently in " + fileName<<endl;
 			isExist = true;
 			break;
@@ -144,6 +143,7 @@ void GT::traverseBackwards(GeneralNode* t)
 	}
 	
 }
+
 //GeneralNode GT::getParentNode(Itemtype target)
 //{
 //	return getParentNode(root, target);

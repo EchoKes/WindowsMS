@@ -38,4 +38,8 @@ public:
 	//Traverse backwards to previous file or folder
 	void traverseBackwards();
 	void traverseBackwards(GeneralNode* t);
+	//Deleting folder 
+	void deleteCurrent();
+	void deleteCurrent(GeneralNode* t);
+	//updating current item 
 };
