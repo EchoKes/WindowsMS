@@ -60,7 +60,7 @@ void Stack::getTop(GeneralNode& t)
 	{
 		GeneralNode* tempNode = new GeneralNode;
 		tempNode->item = topNode->ItemNode.item;
-		tempNode->Tfolder = topNode->ItemNode.Tfolder;
+		tempNode->TParent = topNode->ItemNode.TParent;
 		tempNode->usedMemory = topNode->ItemNode.usedMemory;
 		t = *tempNode;
 	}

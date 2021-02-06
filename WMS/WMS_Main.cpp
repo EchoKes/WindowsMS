@@ -96,7 +96,7 @@ int main()
 			cout << endl;
 			fileExplorer.updateCurrent(updatedName);
 		}
-		if (choice == "6")
+		if (choice == "6")	//Search and display paths of file/folder 
 		{
 			string name;
 			cout << "\nEnter file/folder name: ";
@@ -105,44 +105,54 @@ int main()
 			fileExplorer.searchFile(name);
 		}
 	}
-
-
 }
 
 
 
-//
+
 //int main()
 //{
 //	Dictionary d;
-//	string array[5] = { "john1.txt", "john2.txt", "john3.txt", "john4.txt", "john5.txt" };
-//
+//	string array[4] = { "john1.txt", "john1.txt", "john5.txt", "john5.txt" };
 //	for (string s : array)
 //	{
 //		d.add(s, "root/" + s);
 //	}
-//	d.add("john5.txt", "root/testPath");
-//	cout << "Test Case 1: Showing of all items" << endl;
+//
 //	d.print();
-//	cout << endl;
-//	//cout << d.get("john5.txt");
-//	cout << "Test Case 2: Showing of all paths in selected filename" << endl;
-//	for (auto x : d.getList("john5.txt"))
-//	{
-//		cout << x << endl;
-//	}
 //	cout << endl;
 //
-//	/*d.remove("john5.txt", "root/john5.txt");
-//	cout << "Test Case 3: Deletion of john5.txt with path value of root/john5.txt" << endl;
-//	d.print();
-//	cout << endl;*/
-//	d.rehash();
-//	cout << "Test Case 4: Showing of all items after rehash" << endl;
-//	d.print();
-//	cout << endl;
-//	d.update("john3.txt", "root/john3.txt", "john5.txt");
-//	d.print();
+//	//
+//	//string array[5] = { "john1.txt", "john2.txt", "john3.txt", "john4.txt", "john5.txt" };
+//
+//	//for (string s : array)
+//	//{
+//	//	d.add(s, "root/" + s);
+//	//}
+//	//d.add("john5.txt", "root/testPath");
+//	//d.add("john5.txt", "root/testPath2");
+//	//cout << "Test Case 1: Showing of all items" << endl;
+//	//d.print();
+//	//cout << endl;
+//	////cout << d.get("john5.txt");
+//	//cout << "Test Case 2: Showing of all paths in selected filename" << endl;
+//	//for (auto x : d.getList("john5.txt"))
+//	//{
+//	//	cout << x << endl;
+//	//}
+//	//cout << endl;
+//
+//	///*d.remove("john5.txt", "root/john5.txt");
+//	//cout << "Test Case 3: Deletion of john5.txt with path value of root/john5.txt" << endl;
+//	//d.print();
+//	//cout << endl;*/
+//	//d.rehash();
+//	//cout << "Test Case 4: Showing of all items after rehash" << endl;
+//	//d.print();
+//	//cout << endl;
+//	//d.update("john3.txt", "root/john3.txt", "john5.txt", "root/john5.txt");
+//	//d.print();
+//
 //
 //
 //	return 0;

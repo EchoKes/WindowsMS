@@ -7,7 +7,7 @@ struct GeneralNode
 {
 	int usedMemory = 0;
 	Itemtype item; // gabriel -> folder6
-	vector<GeneralNode*> Tfolder;
+	vector<GeneralNode*> TParent;
 };
 
 

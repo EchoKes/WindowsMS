@@ -1,4 +1,2 @@
-﻿  Dictionary.cpp
-C:\Users\keste\Documents\GitHub\WindowsMS\WMS\Dictionary.cpp(24,6): warning C4101: 'c': unreferenced local variable
-C:\Users\keste\Documents\GitHub\WindowsMS\WMS\Dictionary.cpp(127,20): warning C4018: '<': signed/unsigned mismatch
+﻿  WMS_Main.cpp
   WMS.vcxproj -> C:\Users\keste\Documents\GitHub\WindowsMS\WMS\Debug\WMS.exe
