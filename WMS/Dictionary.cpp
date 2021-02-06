@@ -62,9 +62,6 @@ void Dictionary::remove(KeyType key, ItemType item){
 
 	if (current->key == key && current->item == item) {
 		items[index] = current->next;
-		//Node* temp = current;
-		//cout << "NEED HELP =>" << current->next->item << endl;
-		
 		current = NULL;
 		delete current;
 	}
@@ -137,11 +134,9 @@ void Dictionary::rehash() {
 	}
 }
 
-void Dictionary::update(KeyType ekey, ItemType eItem, KeyType nkey, ItemType nItem) {
-	
-	remove(ekey, eItem);
-	add(nkey, nItem);
-	
+void Dictionary::update(KeyType eKey, ItemType eItem, KeyType nKey, ItemType nItem) {
+	remove(eKey, eItem);
+	add(nKey, nItem);
 }
 
 int Dictionary::getLength() {

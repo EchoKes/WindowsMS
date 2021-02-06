@@ -63,7 +63,7 @@ public:
 	// pre : key must exist in the dictionary
 	// post: itemtype of key must be changed
 	// return a success/failure result from this method
-	void update(KeyType ekey, ItemType eItem, KeyType nKey,  ItemType nItem);
+	void update(KeyType ekey, ItemType eItem, KeyType nKey, ItemType nItem);
 
 	// check if the Dictionary is empty
 	// pre : none

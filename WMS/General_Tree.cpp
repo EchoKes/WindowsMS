@@ -1,8 +1,9 @@
 #include "GT.h"
-#include "Dictionary.h"
 #include <iostream>
 using namespace std;
+
 static Dictionary d;
+
 GT::GT()
 {
 	root = NULL;
@@ -35,6 +36,7 @@ void GT::insertFolder(GeneralNode*& t, Itemtype item,int n)
 		// Kester Add here item = nameoffile, direc = path
 		//add here.
 		d.add(item, direc);
+		
 		newNode=NULL;
 		delete newNode;
 	}
@@ -152,12 +154,17 @@ void GT::updateCurrent(ItemType item)
 void GT::updateCurrent(GeneralNode* t,ItemType item)
 {
 	string direc;
+	string eKey;
+	string ePath;
+	eKey = t->item;
 	t->item = item;
+	CurrentDirectory.displayInOrderOfInsertion(ePath);
 	CurrentDirectory.pop();
 	CurrentDirectory.push(*t);
 	CurrentNode = t;
 	CurrentDirectory.displayInOrderOfInsertion(direc);
-	//Kester add here the new key is item and the path is direc
+	//Kester update here the new key is item and the path is direc
+	d.update(eKey, ePath, item, direc);
 }
 void GT::deleteChildren(ItemType childrenName)
 {
@@ -172,7 +179,7 @@ void GT::deleteChildren(GeneralNode* t, ItemType childrenName)
 		{
 			if (t->Tfolder[i]->Tfolder.size() != 0)
 			{
-				cout << "Unable to delete children as it contains " << t->Tfolder[i]->Tfolder.size() << " file(s)." << endl;
+				cout << "\nUnable to delete children as it contains " << t->Tfolder[i]->Tfolder.size() << " file(s)." << endl;
 			}
 			else
 			{
@@ -184,7 +191,19 @@ void GT::deleteChildren(GeneralNode* t, ItemType childrenName)
 				CurrentDirectory.push(*CurrentNode);
 				CurrentDirectory.displayInOrderOfInsertion(direc);
 				//Kester childrenName = ur hash, direc is path.
+				//cout << childrenName << "	" << direc << "		" << endl;
+				direc += childrenName + "/";
+				d.remove(childrenName, direc);
 			}
 		}
 	}
+}
+
+void GT::searchFile(KeyType key) {
+	key += ".txt";
+	for (auto x : d.getList(key))
+	{
+		cout << x << endl;
+	}
+	cout << endl;
 }
