@@ -19,7 +19,7 @@ private:
 public:
 	Stack();		// constructor
 	~Stack();		// destructor
-	bool push(stackItemType ItemNode);
+	bool push(stackItemType& ItemNode);
 	bool pop();
 	bool pop(stackItemType& ItemNode);
 	void getTop(GeneralNode& t);

@@ -4,6 +4,7 @@ using namespace std;
 void displayMenu()
 {
 	cout << "Select an action to proceed!" << endl;
+	cout << "----------------------------" << endl;
 	cout << "[1] New" << endl;
 	cout << "[2] Select Folder" << endl;
 	cout << "[3] Back to Previous Folder" << endl;
@@ -14,6 +15,7 @@ void displayMenu()
 }
 void displayOption1Menu()
 {
+	cout << "Spacing will not be captured." << endl;
 	cout << "[1] New Folder" << endl;
 	cout << "[2] New Text File" << endl;
 }

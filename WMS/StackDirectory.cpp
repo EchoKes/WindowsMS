@@ -3,7 +3,7 @@ using namespace std;
 Stack::Stack() { Node* topNode = NULL; top = -1; }
 Stack::~Stack() {}
 
-bool Stack::push(stackItemType item)
+bool Stack::push(stackItemType& item)
 {
 	bool success = !isEmpty();
 	if (!success)
@@ -60,7 +60,7 @@ void Stack::getTop(GeneralNode& t)
 	{
 		GeneralNode* tempNode = new GeneralNode;
 		tempNode->item = topNode->ItemNode.item;
-		tempNode->Tfolder = topNode->ItemNode.Tfolder;
+		tempNode->TParent = topNode->ItemNode.TParent;
 		tempNode->usedMemory = topNode->ItemNode.usedMemory;
 		t = *tempNode;
 	}
