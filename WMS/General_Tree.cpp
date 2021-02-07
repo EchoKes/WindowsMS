@@ -147,6 +147,41 @@ void GT::traverseBackwards(GeneralNode* t)
 	CurrentNode = t;
 	cout << "You are currently in " + t->item << endl;
 }
+bool GT::updateRecursive(GeneralNode* n)
+{
+	// base case
+	if (n->TParent.size() == 0)
+	{
+		return true;
+	}
+	else 
+	{
+		KeyType item;
+		ItemType path;
+		ItemType ePath;
+		int numOfChilds = n->TParent.size();
+		for (int i = 0; i < numOfChilds; i++)
+		{
+			cout << "INDICTIATIG =>" << n->item << "	" << numOfChilds << endl;
+			item = n->TParent[i]->item;
+			CurrentDirectory.displayInOrderOfInsertion(path);
+			for (ItemType x : d.getList(item))
+			{
+				if (x.find(n->item)) {
+					ePath = x;
+					break;
+				}
+
+			}
+			path += n->item + "/" + item;
+			d.remove(item, ePath);
+			d.add(item, path);
+
+			updateRecursive(n->TParent[i]);
+		}
+	}
+	
+}
 void GT::updateCurrent(ItemType item)
 {
 	updateCurrent(CurrentNode,item);
@@ -165,6 +200,7 @@ void GT::updateCurrent(GeneralNode* t,ItemType item)
 	CurrentDirectory.displayInOrderOfInsertion(direc);
 	//Kester update here the new key is item and the path is direc
 	d.update(eKey, ePath, item, direc);
+	updateRecursive(t);
 }
 void GT::deleteChildren(ItemType childrenName)
 {
@@ -200,7 +236,6 @@ void GT::deleteChildren(GeneralNode* t, ItemType childrenName)
 }
 
 void GT::searchFile(KeyType key) {
-	key += ".txt";
 	for (auto x : d.getList(key))
 	{
 		cout << x << endl;

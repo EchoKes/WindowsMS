@@ -35,5 +35,6 @@ public:
 	void updateCurrent(GeneralNode* t,ItemType item);
 	//search for file
 	void searchFile(KeyType item);
-	void UpdateUsingRecursion(GeneralNode* t, int n);
+	//helper function to update recursively
+	bool updateRecursive(GeneralNode* n);
 };

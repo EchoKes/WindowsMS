@@ -31,18 +31,22 @@ public:
 	// destructor
 	~Dictionary();
 
+	// calculates new index of key
+	// pre : none
+	// post: none
+	// return the index
 	int hash(KeyType key);
 
 	// add a new item with the specified key to the Dictionary
 	// pre : none
 	// post: new item is added to the Dictionary
-	//       size of Dictionary is increased by 1
+	// size of Dictionary is increased by 1
 	bool add(KeyType newKey, ItemType newItem);
 
 	// remove an item with the specified key in the Dictionary
 	// pre : key must exist in the Dictionary
 	// post: item is removed from the Dictionary
-	//       size of Dictionary is decreased by 1
+	// size of Dictionary is decreased by 1
 	void remove(KeyType key, ItemType item);
 
 	// Advanced function to rehash the table for better search optimisation
@@ -76,6 +80,12 @@ public:
 	// post: none
 	// return the number of items in the Dictionary
 	int getLength();
+
+	// check if the chain size is exceeded
+	// pre : none
+	// post: none
+	// return true if the number of nodes in chain is >= CHAIN_SIZE; otherwise returns false
+	bool exceedChainLimit(int index);
 
 	//------------------- Other useful functions -----------------
 

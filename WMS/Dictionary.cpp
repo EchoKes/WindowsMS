@@ -15,7 +15,6 @@ Dictionary::Dictionary() {
 
 Dictionary::~Dictionary() {}
 
-//This is the function to get the index of the file name so it can be inserted later on
 int Dictionary::hash(KeyType key) {
 	int total = 0;
 	int n = key.length();
@@ -24,7 +23,8 @@ int Dictionary::hash(KeyType key) {
 	int c;
 	for(char x: key)
 	{	
-		hash = ((hash << 5) + hash) + x;
+		c = x;
+		hash = ((hash << 5) + hash) + c;
 		/* hash * 33 + c */
 	}
 
@@ -39,6 +39,11 @@ bool Dictionary::add(KeyType key, ItemType item) {
 	newNode->item = item;
 	newNode->key = key;
 	newNode->next = NULL;
+
+	//if (exceedChainLimit(index)) {
+	//	rehash();
+	//	//cout << MAX_SIZE << endl;
+	//}
 
 	if (topNode == NULL) {
 		items[index] = newNode;
@@ -66,6 +71,7 @@ void Dictionary::remove(KeyType key, ItemType item){
 		delete current;
 	}
 	else {
+		//cout << current->item << endl;
 		while (current->next->key != key && current->next->item == item)
 		{
 			current = current->next;
@@ -115,20 +121,36 @@ vector<ItemType> Dictionary::getList(KeyType key) {
 	return itemList;
 }
 
-void Dictionary::rehash() {
+bool isPrime(int current, int divisor) {
+	if (current % divisor == 0)
+		return false;
+	if (divisor * divisor > current)
+		return true;
+	return isPrime(current, divisor + 1);
+}
+
+int nextPrime(int current) {
+	while (!isPrime(current, 2))
+	{
+		current++;
+	}
+	return current;
+}
+
+void Dictionary::rehash() 
+{
 	vector<Node*>tempItems = items;
-	MAX_SIZE = 7; // change value to the next biggest prime number !!!****
+	MAX_SIZE = nextPrime(MAX_SIZE);	//Sets MAX_SIZE to next nearest prime number
 	items.clear();
 	items.resize(MAX_SIZE);
-	//loop thru all the items in tempItems
-	for (int i = 0; i < tempItems.size(); i++)
+	
+	for (int i = 0; i < tempItems.size(); i++)	//loop thru all the items in tempItems
 	{
 		while (tempItems[i]!=NULL)
 		{
 			KeyType k = tempItems[i]->key;
 			ItemType v = tempItems[i]->item;
-			// add to original vector "items"
-			add(k,v);
+			add(k,v);	// add to original vector "items"
 			tempItems[i] = tempItems[i]->next;
 		}
 	}
@@ -142,6 +164,19 @@ void Dictionary::update(KeyType eKey, ItemType eItem, KeyType nKey, ItemType nIt
 int Dictionary::getLength() {
 	return size;
 }
+
+bool Dictionary::exceedChainLimit(int index) {
+	int chain_size = 0;
+	Node* temp = items[index];
+	while (temp != NULL)
+	{
+		chain_size++;
+		temp = temp->next;
+	}
+	bool result = (chain_size >= CHAIN_SIZE) ? true : false;
+	return result;
+}
+
 
 bool Dictionary::isEmpty() {
 	return (bool(size));
@@ -162,7 +197,6 @@ void Dictionary::print() {
 		}	
 	}
 }
-
 
 //
 //int main()
