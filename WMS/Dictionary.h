@@ -41,67 +41,67 @@ public:
 	// destructor
 	~Dictionary();
 
-	// calculates new index of key
+	// calculates new index of key:Kester
 	// pre : none
 	// post: none
 	// return the index
 	int hash(KeyType key);
 
-	// add a new item with the specified key to the Dictionary
+	// add a new item with the specified key to the Dictionary:Kester
 	// pre : none
 	// post: new item is added to the Dictionary
 	// size of Dictionary is increased by 1
 	bool add(KeyType newKey, ItemType newItem);
 
-	// remove an item with the specified key in the Dictionary
+	// remove an item with the specified key in the Dictionary:Kester
 	// pre : key must exist in the Dictionary
 	// post: item is removed from the Dictionary
 	// size of Dictionary is decreased by 1
 	void remove(KeyType key, ItemType item);
 
-	// Advanced function to rehash the table for better search optimisation
+	// Advanced function to rehash the table for better search optimisation:Kester
 	// pre : none
 	// post: none
 	// return the new table
 	void rehash();
 
-	// get an item with the specified key in the Dictionary (retrieve)
+	// get an item with the specified key in the Dictionary (retrieve):Kester
 	// pre : key must exist in the dictionary
 	// post: none
 	// return the item with the specified key from the Dictionary
 	ItemType get(KeyType key);
 
-	// returns item with specified key given  
+	// returns item with specified key given  :Kester
 	// pre : none
 	// post: none
 	// return the item with the specified key from the Dictionary
 	bool getListHelper(Node* n, KeyType key, vector<ItemType> &list);
 
-	// get a vector of paths with the specified key in the Dictionary (retrieve)
+	// get a vector of paths with the specified key in the Dictionary (retrieve):Kester
 	// pre : key must exist in the dictionary
 	// post: none
 	// return the items with the specified key from the Dictionary
 	vector<ItemType> getList(KeyType key);
 
-	// removes specified key in the Dictionary and insert existing key with new itemtype 
+	// removes specified key in the Dictionary and insert existing key with new itemtype :Kester
 	// pre : key must exist in the dictionary
 	// post: itemtype of key must be changed
 	// return a success/failure result from this method
 	bool update(KeyType ekey, ItemType eItem, KeyType nKey, ItemType nItem);
 
-	// check if the Dictionary is empty
+	// check if the Dictionary is empty:Kester
 	// pre : none
 	// post: none
 	// return true if the Dictionary is empty; otherwise returns false
 	bool isEmpty();
 
-	// check the size of the Dictionary
+	// check the size of the Dictionary:Kester
 	// pre : none
 	// post: none
 	// return the number of items in the Dictionary
 	int getLength();
 
-	// check if the chain size is exceeded
+	// check if the chain size is exceeded:Kester
 	// pre : none
 	// post: none
 	// return true if the number of nodes in chain is >= CHAIN_SIZE; otherwise returns false
@@ -109,7 +109,7 @@ public:
 
 	//------------------- Other useful functions -----------------
 
-	// display the items in the Dictionary
+	// display the items in the Dictionary:Kester
 	void print();
 
 	// void replace(KeyType key, ItemType item);

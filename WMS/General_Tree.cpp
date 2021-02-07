@@ -20,18 +20,18 @@ GT::GT()
 	CurrentNode = NULL;
 	CurrentDirectory;
 }
-void GT::insertFolder(Itemtype item)
+void GT::insertChildren(Itemtype item)
 {
 	if(root ==NULL)
 	{
-		insertFolder(root, item,1);
+		insertChildren(root, item,1);
 	}
-	else{ insertFolder(CurrentNode, item,0); }
+	else{ insertChildren(CurrentNode, item,0); }
 	
 }
-void GT::insertFolder(GeneralNode*& t, Itemtype item,int n)
+void GT::insertChildren(GeneralNode*& t, Itemtype item,int n)
 {
-	string direc;
+	ItemType direc;
 	if (t == NULL)
 	{
 		GeneralNode* newNode = new GeneralNode;
@@ -111,9 +111,9 @@ void GT::traverseToChild(Itemtype fileName)
 }
 void GT::traverseToChild(GeneralNode* t,Itemtype fileName)
 {
-	string direc;
+	ItemType direc;
 	bool isExist = true;
-	string directoryPath;
+	ItemType directoryPath;
 	for (int i = 0;i < t->usedMemory;i++)
 	{
 		if (t->TParent[i]->item == fileName)
@@ -160,7 +160,6 @@ void GT::traverseBackwards(GeneralNode* t)
 }
 bool GT::updateRecursive(GeneralNode* n)
 {	
-	cout << "\nTHIS IS TESTING" << endl << "===============" << endl;
 	cout << "General Node item: " << n->item << endl;
 	cout << "TParent size: " << n->TParent.size() << endl;
 	cout << "Used Memory: " << n->usedMemory << endl;
@@ -169,6 +168,7 @@ bool GT::updateRecursive(GeneralNode* n)
 	{
 		return true;
 	}
+	//Recursion
 	else 
 	{
 		KeyType item;
@@ -202,9 +202,9 @@ void GT::updateCurrent(ItemType item)
 }
 void GT::updateCurrent(GeneralNode* t,ItemType item)
 {
-	string direc;
-	string eKey;
-	string ePath;
+	ItemType direc;
+	ItemType eKey;
+	ItemType ePath;
 	eKey = t->item;
 	t->item = item;
 	CurrentDirectory.displayInOrderOfInsertion(ePath);
@@ -222,7 +222,7 @@ void GT::deleteChildren(ItemType childrenName)
 }
 void GT::deleteChildren(GeneralNode* t, ItemType childrenName)
 {
-	string direc;
+	ItemType direc;
 	for (int i = 0;i < t->usedMemory;i++)
 	{
 		if (t->TParent[i]->item == childrenName)
@@ -241,7 +241,6 @@ void GT::deleteChildren(GeneralNode* t, ItemType childrenName)
 				CurrentDirectory.push(*CurrentNode);
 				CurrentDirectory.displayInOrderOfInsertion(direc);
 				//Kester childrenName = ur hash, direc is path.
-				//cout << childrenName << "	" << direc << "		" << endl;
 				direc += childrenName + "/";
 				d.remove(childrenName, direc);
 			}

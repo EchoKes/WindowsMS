@@ -26,11 +26,39 @@ private:
 public:
 	Stack();		// constructor
 	~Stack();		// destructor
+	//Pushing Item as struct to stack:Gabriel
+	//Pre:none
+	//Post:Stack adds item, top++.
+	//Return:Returns true
 	bool push(stackItemType& ItemNode);
+	//Remove Item in stack:Gabriel
+	//Pre:TopNode have to be pointed to a node.
+	//Post:Stack removes item, top--.
+	//Return:Returns true
 	bool pop();
+	//Remove specific Item in stack:Gabriel
+	//Pre:Item exist in stack
+	//Post:Stack removes item, top--.
+	//Return:Returns true
 	bool pop(stackItemType& ItemNode);
+	//Get the item of Stack:Gabriel
+	//Pre:TopNode have to be pointed to a node.
+	//Post:none
+	//Return:none since its void
 	void getTop(GeneralNode& t);
+	//Check if stack is empty:Gabriel
+	//Pre:none
+	//Post:none
+	//Return:Returns true
 	bool isEmpty();
+	//Display stack:Gabriel
+	//Pre:Stack is not empty
+	//Post:display stack items
+	//Return:none since its void
 	void displayInOrder(string& direcPath);
+	//Display stack in order of insertion:Gabriel
+	//Pre:Stack is not empty, put stack into back stack
+	//Post:display stack items
+	//Return:none since its void
 	void displayInOrderOfInsertion(string& direcPath);
 };
