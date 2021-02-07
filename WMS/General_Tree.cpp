@@ -60,7 +60,7 @@ void GT::insertFolder(GeneralNode*& t, Itemtype item,int n)
 		{
 			GeneralNode* AddNode = new GeneralNode;
 			AddNode->item = item;
-			t->Tfolder.push_back(AddNode);
+			t->TParent.push_back(AddNode);
 			CurrentDirectory.displayInOrderOfInsertion(direc);
 			direc +=item+"/";
 			// Kester Add here item = nameoffile, direc = path
@@ -91,7 +91,7 @@ void GT::showChildrenOfCurrentNode(GeneralNode* t,int n)
 	//recursive
 	else
 	{
-		cout << t->Tfolder[n]->item << endl;
+		cout << t->TParent[n]->item << endl;
 		showChildrenOfCurrentNode(t, n - 1);
 	}
 }
@@ -106,9 +106,9 @@ void GT::traverseToChild(GeneralNode* t,Itemtype fileName)
 	string directoryPath;
 	for (int i = 0;i < t->usedMemory;i++)
 	{
-		if (t->Tfolder[i]->item == fileName)
+		if (t->TParent[i]->item == fileName)
 		{
-			CurrentNode = t->Tfolder[i];
+			CurrentNode = t->TParent[i];
 			CurrentDirectory.push(*CurrentNode);
 			CurrentDirectory.displayInOrderOfInsertion(direc);
 			cout << "You are currently in " + fileName<<endl;
@@ -175,15 +175,15 @@ void GT::deleteChildren(GeneralNode* t, ItemType childrenName)
 	string direc;
 	for (int i = 0;i < t->usedMemory;i++)
 	{
-		if (t->Tfolder[i]->item == childrenName)
+		if (t->TParent[i]->item == childrenName)
 		{
-			if (t->Tfolder[i]->Tfolder.size() != 0)
+			if (t->TParent[i]->TParent.size() != 0)
 			{
-				cout << "\nUnable to delete children as it contains " << t->Tfolder[i]->Tfolder.size() << " file(s)." << endl;
+				cout << "\nUnable to delete children as it contains " << t->TParent[i]->TParent.size() << " file(s)." << endl;
 			}
 			else
 			{
-				t->Tfolder.erase(t->Tfolder.begin() + i);
+				t->TParent.erase(t->TParent.begin() + i);
 				t->usedMemory--;
 				cout << "1 item deleted."<<endl;
 				CurrentNode = t;
@@ -206,4 +206,9 @@ void GT::searchFile(KeyType key) {
 		cout << x << endl;
 	}
 	cout << endl;
+}
+
+void GT::UpdateUsingRecursion(GeneralNode* t, int n)
+{
+
 }
