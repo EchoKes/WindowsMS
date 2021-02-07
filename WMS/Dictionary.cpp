@@ -16,7 +16,7 @@ using namespace std;
 
 Dictionary::Dictionary() 
 {
-	Node* topNode = NULL;
+	//Node* topNode = NULL;
 	items.resize(MAX_SIZE);
 
 	for (int i = 0; i < MAX_SIZE; i++) 
@@ -49,7 +49,7 @@ bool Dictionary::add(KeyType key, ItemType item)
 {
 	int index = hash(key);
 	//cout << index << endl;
-	topNode = items[index];
+	Node* current = items[index];
 	Node* newNode = new Node;
 	newNode->item = item;
 	newNode->key = key;
@@ -60,18 +60,18 @@ bool Dictionary::add(KeyType key, ItemType item)
 	//	//cout << MAX_SIZE << endl;
 	//}
 
-	if (topNode == NULL) 
+	if (current == NULL) 
 	{
 		items[index] = newNode;
 	}
 	else
 	{
-		Node* current = topNode;
-		while (current->next != NULL)
+		Node* temp = current;
+		while (temp->next != NULL)
 		{
-			current = current->next;
+			temp = temp->next;
 		}
-		current->next = newNode;
+		temp->next = newNode;
 	}
 	size++;
 	return true;
@@ -105,24 +105,24 @@ void Dictionary::remove(KeyType key, ItemType item)
 /* This function will not be in use as it has been confirmed that
 the application will display a list of the paths with same file/folder
 name. */
-ItemType Dictionary::get(KeyType key) 
-{
-	string path = "not found";
-	int index = hash(key);
-	topNode = items[index];
-	Node* current = topNode;
-
-	while (current != NULL)
-	{
-		if (current->key == key)
-		{
-			path = current->item;
-		}
-		current = current->next;
-	}
-
-	return path;
-}
+//ItemType Dictionary::get(KeyType key) 
+//{
+//	string path = "not found";
+//	int index = hash(key);
+//	topNode = items[index];
+//	Node* current = topNode;
+//
+//	while (current != NULL)
+//	{
+//		if (current->key == key)
+//		{
+//			path = current->item;
+//		}
+//		current = current->next;
+//	}
+//
+//	return path;
+//}
 
 bool Dictionary::getListHelper(Node* n, KeyType key, vector<ItemType> &list)
 {
@@ -144,8 +144,7 @@ vector<ItemType> Dictionary::getList(KeyType key)
 {
 	vector<ItemType> itemList;
 	int index = hash(key);
-	topNode = items[index];
-	Node* current = topNode;
+	Node* current = items[index];
 
 	// best case scenario for when there is only one node
 	if(current->next == NULL)

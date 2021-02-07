@@ -39,11 +39,13 @@ int main()
 	while (true)
 	{
 		displayMenu();
+		cout << "Your selection: ";
 		string choice;
 		cin >> choice;
 		if (choice == "1") //Create a new file or folder 
 		{
 			displayOption1Menu();
+			cout << "Your selection: ";
 			string choiceOfCreation;
 			cin >> choiceOfCreation;
 			if (choiceOfCreation == "1") //create a new folder under current node

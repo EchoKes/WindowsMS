@@ -160,10 +160,6 @@ void GT::traverseBackwards(GeneralNode* t)
 }
 bool GT::updateRecursive(GeneralNode* n)
 {	
-	cout << "\nTHIS IS TESTING" << endl << "===============" << endl;
-	cout << "General Node item: " << n->item << endl;
-	cout << "TParent size: " << n->TParent.size() << endl;
-	cout << "Used Memory: " << n->usedMemory << endl;
 	// base case
 	if (n->TParent.size() == 0)
 	{
@@ -178,8 +174,8 @@ bool GT::updateRecursive(GeneralNode* n)
 		for (int i = 0; i < numOfChilds; i++)
 		{
 			item = n->TParent[i]->item;
-			traverseToChild(n->item);
-			CurrentDirectory.displayInOrderOfInsertion(path);
+			traverseToChild(n->item);	
+			CurrentDirectory.displayInOrderOfInsertion(path);	// old path
 			for (ItemType x : d.getList(item))
 			{
 				if (x.find(n->item)) {
@@ -191,7 +187,7 @@ bool GT::updateRecursive(GeneralNode* n)
 				}
 
 			}
-			updateRecursive(n->TParent[i]);
+			updateRecursive(n->TParent[i]);	// go to next inner folder
 		}
 	}
 	

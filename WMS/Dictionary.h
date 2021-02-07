@@ -14,7 +14,7 @@ complexity will be better/worse.
 using namespace std;
 
 //const int MAX_SIZE = 17;
-static int MAX_SIZE = 4;
+static int MAX_SIZE = 5;
 static int CHAIN_SIZE = 3;
 typedef string KeyType;
 typedef string ItemType;
@@ -30,7 +30,7 @@ private:
 	};
 
 	vector<Node*>items;
-	Node* topNode;
+	//Node* topNode;
 	int	size;			// number of items in the Dictionary
 
 public:
