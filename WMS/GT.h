@@ -9,7 +9,6 @@ private:
 	GeneralNode* root;
 	GeneralNode* CurrentNode;
 	Stack CurrentDirectory; 
-	
 public:
 	GT();
 	int size;
@@ -34,4 +33,6 @@ public:
 	//updating current item 
 	void updateCurrent(ItemType item);
 	void updateCurrent(GeneralNode* t,ItemType item);
+	//search for file
+	void searchFile(KeyType item);
 };

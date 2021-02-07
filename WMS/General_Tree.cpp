@@ -1,8 +1,9 @@
 #include "GT.h"
-#include "Dictionary.h"
 #include <iostream>
 using namespace std;
+
 static Dictionary d;
+
 GT::GT()
 {
 	root = NULL;
@@ -35,6 +36,7 @@ void GT::insertFolder(GeneralNode*& t, Itemtype item,int n)
 		// Kester Add here item = nameoffile, direc = path
 		//add here.
 		d.add(item, direc);
+		
 		newNode=NULL;
 		delete newNode;
 	}
@@ -58,7 +60,7 @@ void GT::insertFolder(GeneralNode*& t, Itemtype item,int n)
 		{
 			GeneralNode* AddNode = new GeneralNode;
 			AddNode->item = item;
-			t->TParent.push_back(AddNode);
+			t->Tfolder.push_back(AddNode);
 			CurrentDirectory.displayInOrderOfInsertion(direc);
 			direc +=item+"/";
 			// Kester Add here item = nameoffile, direc = path
@@ -89,7 +91,7 @@ void GT::showChildrenOfCurrentNode(GeneralNode* t,int n)
 	//recursive
 	else
 	{
-		cout << t->TParent[n]->item << endl;
+		cout << t->Tfolder[n]->item << endl;
 		showChildrenOfCurrentNode(t, n - 1);
 	}
 }
@@ -104,9 +106,9 @@ void GT::traverseToChild(GeneralNode* t,Itemtype fileName)
 	string directoryPath;
 	for (int i = 0;i < t->usedMemory;i++)
 	{
-		if (t->TParent[i]->item == fileName)
+		if (t->Tfolder[i]->item == fileName)
 		{
-			CurrentNode = t->TParent[i];
+			CurrentNode = t->Tfolder[i];
 			CurrentDirectory.push(*CurrentNode);
 			CurrentDirectory.displayInOrderOfInsertion(direc);
 			cout << "You are currently in " + fileName<<endl;
@@ -152,12 +154,17 @@ void GT::updateCurrent(ItemType item)
 void GT::updateCurrent(GeneralNode* t,ItemType item)
 {
 	string direc;
+	string eKey;
+	string ePath;
+	eKey = t->item;
 	t->item = item;
+	CurrentDirectory.displayInOrderOfInsertion(ePath);
 	CurrentDirectory.pop();
 	CurrentDirectory.push(*t);
 	CurrentNode = t;
 	CurrentDirectory.displayInOrderOfInsertion(direc);
-	//Kester add here the new key is item and the path is direc
+	//Kester update here the new key is item and the path is direc
+	d.update(eKey, ePath, item, direc);
 }
 void GT::deleteChildren(ItemType childrenName)
 {
@@ -168,15 +175,15 @@ void GT::deleteChildren(GeneralNode* t, ItemType childrenName)
 	string direc;
 	for (int i = 0;i < t->usedMemory;i++)
 	{
-		if (t->TParent[i]->item == childrenName)
+		if (t->Tfolder[i]->item == childrenName)
 		{
-			if (t->TParent[i]->TParent.size() != 0)
+			if (t->Tfolder[i]->Tfolder.size() != 0)
 			{
-				cout << "Unable to delete children as it contains " << t->TParent[i]->TParent.size() << " file(s)." << endl;
+				cout << "\nUnable to delete children as it contains " << t->Tfolder[i]->Tfolder.size() << " file(s)." << endl;
 			}
 			else
 			{
-				t->TParent.erase(t->TParent.begin() + i);
+				t->Tfolder.erase(t->Tfolder.begin() + i);
 				t->usedMemory--;
 				cout << "1 item deleted."<<endl;
 				CurrentNode = t;
@@ -184,7 +191,19 @@ void GT::deleteChildren(GeneralNode* t, ItemType childrenName)
 				CurrentDirectory.push(*CurrentNode);
 				CurrentDirectory.displayInOrderOfInsertion(direc);
 				//Kester childrenName = ur hash, direc is path.
+				//cout << childrenName << "	" << direc << "		" << endl;
+				direc += childrenName + "/";
+				d.remove(childrenName, direc);
 			}
 		}
 	}
+}
+
+void GT::searchFile(KeyType key) {
+	key += ".txt";
+	for (auto x : d.getList(key))
+	{
+		cout << x << endl;
+	}
+	cout << endl;
 }
