@@ -112,8 +112,9 @@ void GT::traverseToChild(GeneralNode* t,Itemtype fileName)
 			CurrentDirectory.push(*CurrentNode);
 			CurrentDirectory.displayInOrderOfInsertion(direc);
 			cout << "You are currently in " + fileName<<endl;
-			break;
 			isExist = true;
+			break;
+			
 		}
 		else
 		{
@@ -162,21 +163,20 @@ bool GT::updateRecursive(GeneralNode* n)
 		int numOfChilds = n->TParent.size();
 		for (int i = 0; i < numOfChilds; i++)
 		{
-			cout << "INDICTIATIG =>" << n->item << "	" << numOfChilds << endl;
 			item = n->TParent[i]->item;
+			traverseToChild(n->item);
 			CurrentDirectory.displayInOrderOfInsertion(path);
 			for (ItemType x : d.getList(item))
 			{
 				if (x.find(n->item)) {
 					ePath = x;
+					path += item;
+					d.remove(item, ePath);
+					d.add(item, path);
 					break;
 				}
 
 			}
-			path += n->item + "/" + item;
-			d.remove(item, ePath);
-			d.add(item, path);
-
 			updateRecursive(n->TParent[i]);
 		}
 	}
@@ -241,9 +241,4 @@ void GT::searchFile(KeyType key) {
 		cout << x << endl;
 	}
 	cout << endl;
-}
-
-void GT::UpdateUsingRecursion(GeneralNode* t, int n)
-{
-
 }
