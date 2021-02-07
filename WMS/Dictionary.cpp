@@ -1,13 +1,26 @@
+/*
+Team Member: Kester Yeo
+Student ID: S10185261A
+Group: 11
+
+Features to take note will be hash and rehashing function
+as these 2 functions will determine if the searching's 
+complexity will be better/worse.
+*/
+
+
 #include <iostream>
 #include "Dictionary.h" 
 using namespace std;
 
 
-Dictionary::Dictionary() {
+Dictionary::Dictionary() 
+{
 	Node* topNode = NULL;
 	items.resize(MAX_SIZE);
 
-	for (int i = 0; i < MAX_SIZE; i++) {
+	for (int i = 0; i < MAX_SIZE; i++) 
+	{
 		items[i] = NULL;
 	}
 	size = 0;
@@ -15,7 +28,8 @@ Dictionary::Dictionary() {
 
 Dictionary::~Dictionary() {}
 
-int Dictionary::hash(KeyType key) {
+int Dictionary::hash(KeyType key) 
+{
 	int total = 0;
 	int n = key.length();
 
@@ -31,7 +45,8 @@ int Dictionary::hash(KeyType key) {
 	return (hash % MAX_SIZE);
 }
 
-bool Dictionary::add(KeyType key, ItemType item) {
+bool Dictionary::add(KeyType key, ItemType item) 
+{
 	int index = hash(key);
 	//cout << index << endl;
 	topNode = items[index];
@@ -45,7 +60,8 @@ bool Dictionary::add(KeyType key, ItemType item) {
 	//	//cout << MAX_SIZE << endl;
 	//}
 
-	if (topNode == NULL) {
+	if (topNode == NULL) 
+	{
 		items[index] = newNode;
 	}
 	else
@@ -61,14 +77,16 @@ bool Dictionary::add(KeyType key, ItemType item) {
 	return true;
 }
 
-void Dictionary::remove(KeyType key, ItemType item){
+void Dictionary::remove(KeyType key, ItemType item)
+{
 	int index = hash(key);
 	Node* current = items[index];
 
-	if (current->key == key && current->item == item) {
+	if (current->key == key && current->item == item) 
+	{
 		items[index] = current->next;
 		current = NULL;
-		delete current;
+		delete current;	// deallocate memory 
 	}
 	else {
 		//cout << current->item << endl;
@@ -84,7 +102,11 @@ void Dictionary::remove(KeyType key, ItemType item){
 	}
 }
 
-ItemType Dictionary::get(KeyType key) {
+/* This function will not be in use as it has been confirmed that
+the application will display a list of the paths with same file/folder
+name. */
+ItemType Dictionary::get(KeyType key) 
+{
 	string path = "not found";
 	int index = hash(key);
 	topNode = items[index];
@@ -102,25 +124,56 @@ ItemType Dictionary::get(KeyType key) {
 	return path;
 }
 
-// case for when programme allows adding of the same files in different directories
-vector<ItemType> Dictionary::getList(KeyType key) {
+bool Dictionary::getListHelper(Node* n, KeyType key, vector<ItemType> &list)
+{
+	if(n == NULL)
+	{
+		return true;
+	}
+	if (n->key == key)
+	{
+		list.push_back(n->item);	
+	}
+	if (n->next != NULL)
+	{
+		getListHelper(n->next, key, list);
+	}
+}
+
+vector<ItemType> Dictionary::getList(KeyType key) 
+{
 	vector<ItemType> itemList;
 	int index = hash(key);
 	topNode = items[index];
 	Node* current = topNode;
 
-	while (current != NULL)
+	// best case scenario for when there is only one node
+	if(current->next == NULL)
 	{
-		if (current->key == key)
-		{
-			itemList.push_back(current->item);
-		}
-		current = current->next;
+		itemList.push_back(current->item);
+	} 
+	else
+	{
+		 /*while (current != NULL)
+		 {
+		 	if (current->key == key)
+		 	{
+		 		itemList.push_back(current->item);
+		 	}
+		 	current = current->next;
+		 }*/
+
+		// recursive function to improve searching time complexity
+		getListHelper(current, key, itemList);
 	}
 
 	return itemList;
 }
 
+// get an integer which will be the size and divisor 
+// pre : none
+// post: none
+// return true when the current size is a prime; otherwise return false
 bool isPrime(int current, int divisor) {
 	if (current % divisor == 0)
 		return false;
@@ -129,7 +182,12 @@ bool isPrime(int current, int divisor) {
 	return isPrime(current, divisor + 1);
 }
 
-int nextPrime(int current) {
+// get an integer which will be the size
+// pre : none
+// post: none
+// recursive function that will get the next largest prime number
+int nextPrime(int current) 
+{
 	while (!isPrime(current, 2))
 	{
 		current++;
@@ -141,8 +199,8 @@ void Dictionary::rehash()
 {
 	vector<Node*>tempItems = items;
 	MAX_SIZE = nextPrime(MAX_SIZE);	//Sets MAX_SIZE to next nearest prime number
-	items.clear();
-	items.resize(MAX_SIZE);
+	items.clear();								
+	items.resize(MAX_SIZE);						
 	
 	for (int i = 0; i < tempItems.size(); i++)	//loop thru all the items in tempItems
 	{
@@ -156,9 +214,11 @@ void Dictionary::rehash()
 	}
 }
 
-void Dictionary::update(KeyType eKey, ItemType eItem, KeyType nKey, ItemType nItem) {
+bool Dictionary::update(KeyType eKey, ItemType eItem, KeyType nKey, ItemType nItem) 
+{
 	remove(eKey, eItem);
-	add(nKey, nItem);
+	bool result = add(nKey, nItem) ? true : false;
+	return result;
 }
 
 int Dictionary::getLength() {
@@ -177,60 +237,28 @@ bool Dictionary::exceedChainLimit(int index) {
 	return result;
 }
 
-
-bool Dictionary::isEmpty() {
+bool Dictionary::isEmpty() 
+{
 	return (bool(size));
 }
 
-void Dictionary::print() {
-	for (Node* n : items) {
-		if (n != NULL) {
+void Dictionary::print() 
+{
+	for (Node* n : items) 
+	{
+		if (n != NULL) 
+		{
 			Node* current = n;
-			while (current != NULL) {
+			while (current != NULL) 
+			{
 				cout << current->key << ", " << current->item << "	";
 				current = current->next;
 			}
 			cout << endl;
 		}
-		else {
+		else 
+		{
 			cout << "\b";
 		}	
 	}
 }
-
-//
-//int main()
-//{
-//	Dictionary d;
-//	string array[5] = { "john1.txt", "john2.txt", "john3.txt", "john4.txt", "john5.txt" };
-//
-//	for (string s : array)
-//	{
-//		d.add(s, "root/" + s);
-//	}
-//	d.add("john5.txt", "root/testPath");
-//	cout << "Test Case 1: Showing of all items" << endl;
-//	d.print();
-//	cout << endl;
-//	//cout << d.get("john5.txt");
-//	cout << "Test Case 2: Showing of all paths in selected filename" << endl;
-//	for (auto x : d.getList("john5.txt"))
-//	{
-//		cout << x << endl;
-//	}
-//	cout << endl;
-//
-//	/*d.remove("john5.txt", "root/john5.txt");
-//	cout << "Test Case 3: Deletion of john5.txt with path value of root/john5.txt" << endl;
-//	d.print();
-//	cout << endl;*/
-//	d.rehash();
-//	cout << "Test Case 4: Showing of all items after rehash" << endl;
-//	d.print();
-//	cout << endl;
-//	d.update("john3.txt", "root/john3.txt", "john5.txt", "root/john5.txt");
-//	d.print();
-//
-//
-//	return 0;
-//}

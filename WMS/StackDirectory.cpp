@@ -1,3 +1,10 @@
+/*
+Team Member: Gabriel Goh
+Student ID: S10198258E
+Group: 11
+*/
+
+
 #include "stackDirectory.h"
 using namespace std;
 Stack::Stack() { Node* topNode = NULL; top = -1; }

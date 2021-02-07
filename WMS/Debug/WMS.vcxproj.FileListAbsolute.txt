@@ -2,3 +2,5 @@ D:\Year 2 Sem 2\DSA\Assignment\Assignment_Practical\WMS\Debug\WMS.exe
 D:\Year 2 Sem 2\DSA\Assignment\Assignment_Practical\WMS\Debug\WMS.pdb
 C:\Users\keste\Documents\GitHub\WindowsMS\WMS\Debug\WMS.exe
 C:\Users\keste\Documents\GitHub\WindowsMS\WMS\Debug\WMS.pdb
+C:\Users\keste\Desktop\p2\WindowsMS\WMS\Debug\WMS.exe
+C:\Users\keste\Desktop\p2\WindowsMS\WMS\Debug\WMS.pdb

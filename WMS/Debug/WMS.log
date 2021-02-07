@@ -1,2 +1,3 @@
-﻿  WMS_Main.cpp
-  WMS.vcxproj -> C:\Users\keste\Documents\GitHub\WindowsMS\WMS\Debug\WMS.exe
+﻿  General_Tree.cpp
+C:\Users\keste\Desktop\p2\WindowsMS\WMS\General_Tree.cpp(198): warning C4715: 'GT::updateRecursive': not all control paths return a value
+  WMS.vcxproj -> C:\Users\keste\Desktop\p2\WindowsMS\WMS\Debug\WMS.exe

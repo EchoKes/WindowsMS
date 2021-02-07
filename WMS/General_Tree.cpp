@@ -1,3 +1,13 @@
+/*
+Team Members: Gabriel Goh, Kester Yeo
+Student ID: S10198258E, S10185261A
+Group: 11
+
+take note of updateRecursive() function as it updates the path of
+the child nodes if the parent node's path is changed. 
+*/
+
+
 #include "GT.h"
 #include <iostream>
 using namespace std;
@@ -149,7 +159,11 @@ void GT::traverseBackwards(GeneralNode* t)
 	cout << "You are currently in " + t->item << endl;
 }
 bool GT::updateRecursive(GeneralNode* n)
-{
+{	
+	cout << "\nTHIS IS TESTING" << endl << "===============" << endl;
+	cout << "General Node item: " << n->item << endl;
+	cout << "TParent size: " << n->TParent.size() << endl;
+	cout << "Used Memory: " << n->usedMemory << endl;
 	// base case
 	if (n->TParent.size() == 0)
 	{

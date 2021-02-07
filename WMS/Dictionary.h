@@ -1,3 +1,13 @@
+/*
+Team Member: Kester Yeo
+Student ID: S10185261A
+Group: 11
+
+Features to take note will be hash and rehashing function
+as these 2 functions will determine if the searching's 
+complexity will be better/worse.
+*/
+
 #pragma once
 #include <string>
 #include <vector>
@@ -61,13 +71,23 @@ public:
 	// return the item with the specified key from the Dictionary
 	ItemType get(KeyType key);
 
+	// returns item with specified key given  
+	// pre : none
+	// post: none
+	// return the item with the specified key from the Dictionary
+	bool getListHelper(Node* n, KeyType key, vector<ItemType> &list);
+
+	// get a vector of paths with the specified key in the Dictionary (retrieve)
+	// pre : key must exist in the dictionary
+	// post: none
+	// return the items with the specified key from the Dictionary
 	vector<ItemType> getList(KeyType key);
 
 	// removes specified key in the Dictionary and insert existing key with new itemtype 
 	// pre : key must exist in the dictionary
 	// post: itemtype of key must be changed
 	// return a success/failure result from this method
-	void update(KeyType ekey, ItemType eItem, KeyType nKey, ItemType nItem);
+	bool update(KeyType ekey, ItemType eItem, KeyType nKey, ItemType nItem);
 
 	// check if the Dictionary is empty
 	// pre : none

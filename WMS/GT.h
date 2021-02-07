@@ -1,3 +1,12 @@
+/*
+Team Members: Gabriel Goh, Kester Yeo
+Student ID: S10198258E, S10185261A
+Group: 11
+
+take note of updateRecursive() function as it updates the path of
+the child nodes if the parent node's path is changed. 
+*/
+
 #pragma once
 using namespace std;
 #include "General_Tree.h"

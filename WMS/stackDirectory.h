@@ -1,4 +1,11 @@
-// Stack.h – Specification of Stack (Pointer-based implementation)
+/*
+Team Member: Gabriel Goh
+Student ID: S10198258E
+Group: 11
+*/
+
+
+// Stack.h ï¿½ Specification of Stack (Pointer-based implementation)
 #pragma once
 #include <iostream>
 #include "General_Tree.h"

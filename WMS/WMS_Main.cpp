@@ -1,3 +1,12 @@
+/*
+Team Members: Gabriel Goh, Kester Yeo
+Student ID: S10198258E, S10185261A
+Group: 11
+
+take note of ...
+*/
+
+
 using namespace std;
 #include "GT.h"
 #include "Dictionary.h"
@@ -113,13 +122,18 @@ int main()
 //int main()
 //{
 //	Dictionary d;
-//	string array[4] = { "john1.txt", "john1.txt", "john5.txt", "john5.txt" };
+//	string array[4] = { "john2.txt", "john1.txt", "john5.txt", "john5.txt" };
 //	for (string s : array)
 //	{
 //		d.add(s, "root/" + s);
 //	}
-//
 //	d.print();
+//	cout << endl;
+//
+//	for (auto x : d.getList("john2.txt"))
+//	{
+//		cout << x << endl;
+//	}
 //	cout << endl;
 //
 //	//
