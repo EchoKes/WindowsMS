@@ -54,7 +54,7 @@ int main()
 				cout << "\nEnter Folder Name: ";
 				cin >> folderName;
 				cout << endl;
-				fileExplorer.insertFolder(folderName);
+				fileExplorer.insertChildren(folderName);
 				
 			}
 			else if (choiceOfCreation == "2") //create a new file under current node
@@ -64,7 +64,7 @@ int main()
 				cin >> fileName;
 				cout << endl;
 				fileName = fileName + ".txt";
-				fileExplorer.insertFolder(fileName);
+				fileExplorer.insertChildren(fileName);
 			}
 			
 		}
